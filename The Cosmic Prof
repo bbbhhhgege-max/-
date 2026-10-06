@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cosmic Space Landing Page">
+  <title>Cosmic Space</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #050616;
+      --purple: #8b5cf6;
+      --blue: #2563eb;
+      --cyan: #38bdf8;
+      --text: #f8fafc;
+      --muted: #a5b4fc;
+      --glass: rgba(255,255,255,.06);
+      --border: rgba(139,92,246,.28);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Tahoma, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(139,92,246,.22), transparent 28%),
+        radial-gradient(circle at 80% 30%, rgba(37,99,235,.20), transparent 30%),
+        radial-gradient(circle at 50% 90%, rgba(56,189,248,.10), transparent 25%),
+        var(--bg);
+      overflow-x: hidden;
+    }
+
+    /* Stars */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .55;
+      background-image:
+        radial-gradient(1px 1px at 10% 20%, white 80%, transparent 100%),
+        radial-gradient(1px 1px at 25% 70%, white 80%, transparent 100%),
+        radial-gradient(1px 1px at 40% 35%, white 80%, transparent 100%),
+        radial-gradient(1px 1px at 60% 15%, white 80%, transparent 100%),
+        radial-gradient(1px 1px at 75% 65%, white 80%, transparent 100%),
+        radial-gradient(1px 1px at 90% 30%, white 80%, transparent 100%),
+        radial-gradient(1px 1px at 85% 85%, white 80%, transparent 100%),
+        radial-gradient(1px 1px at 15% 90%, white 80%, transparent 100%);
+      background-size: 260px 260px;
+      animation: stars 25s linear infinite;
+    }
+
+    @keyframes stars {
+      from { transform: translateY(0); }
+      to { transform: translateY(-260px); }
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: auto;
+    }
+
+    header {
+      position: relative;
+      z-index: 10;
+      padding: 24px 0;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      border: 1px solid var(--border);
+      background: rgba(5,6,22,.65);
+      backdrop-filter: blur(16px);
+      border-radius: 18px;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #c4b5fd;
+      text-shadow: 0 0 18px rgba(139,92,246,.8);
+    }
+
+    .lang-btn {
+      border: 1px solid rgba(139,92,246,.5);
+      background: rgba(139,92,246,.1);
+      color: white;
+      padding: 9px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: .25s;
+    }
+
+    .lang-btn:hover {
+      background: rgba(139,92,246,.25);
+      box-shadow: 0 0 20px rgba(139,92,246,.3);
+    }
+
+    .hero {
+      min-height: calc(100vh - 100px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .planet {
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 25%, #d8b4fe, #8b5cf6 22%, #312e81 55%, #11143d 78%);
+      filter: blur(.2px);
+      opacity: .20;
+      box-shadow:
+        0 0 70px rgba(139,92,246,.35),
+        0 0 160px rgba(37,99,235,.20);
+      animation: float 7s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-18px) scale(1.03); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 15px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(56,189,248,.35);
+      background: rgba(56,189,248,.08);
+      color: #bae6fd;
+      border-radius: 999px;
+      font-size: 13px;
+      box-shadow: 0 0 25px rgba(56,189,248,.08);
+    }
+
+    h1 {
+      font-size: clamp(42px, 8vw, 82px);
+      line-height: 1;
+      margin-bottom: 24px;
+      font-weight: 900;
+      background: linear-gradient(90deg, #c4b5fd, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 35px rgba(139,92,246,.15);
+    }
+
+    .subtitle {
+      color: #cbd5e1;
+      font-size: clamp(16px, 2.2vw, 20px);
+      line-height: 1.9;
+      margin-bottom: 35px;
+    }
+
+    .contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px 24px;
+      color: white;
+      text-decoration: none;
+      border: 1px solid rgba(139,92,246,.5);
+      border-radius: 14px;
+      background: linear-gradient(
+        135deg,
+        rgba(139,92,246,.20),
+        rgba(37,99,235,.18)
+      );
+      box-shadow:
+        0 0 25px rgba(139,92,246,.15),
+        inset 0 0 20px rgba(255,255,255,.025);
+      transition: .3s;
+    }
+
+    .contact:hover {
+      transform: translateY(-3px);
+      border-color: #a78bfa;
+      box-shadow:
+        0 0 35px rgba(139,92,246,.35),
+        0 0 70px rgba(37,99,235,.15);
+    }
+
+    .phone {
+      direction: ltr;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .section {
+      padding: 90px 0;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      transition: .3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(139,92,246,.65);
+      box-shadow: 0 15px 45px rgba(0,0,0,.25);
+    }
+
+    .icon {
+      font-size: 28px;
+      margin-bottom: 18px;
+    }
+
+    .card h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: #94a3b8;
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      color: #64748b;
+      font-size: 13px;
+      border-top: 1px solid rgba(139,92,246,.12);
+    }
+
+    [dir="ltr"] .subtitle {
+      letter-spacing: .2px;
+    }
+
+    @media (max-width: 700px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .planet {
+        width: 280px;
+        height: 280px;
+      }
+
+      nav {
+        padding: 12px 15px;
+      }
+
+      .hero {
+        min-height: 80vh;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">COSMIC</div>
+        <button class="lang-btn" onclick="toggleLanguage()" id="langButton">
+          EN
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="planet"></div>
+
+      <div class="hero-content">
+        <span class="badge" id="badge">
+          دنیایی فراتر از مرزها
+        </span>
+
+        <h1 id="title">جهان کیهانی</h1>
+
+        <p class="subtitle" id="subtitle">
+          یک تجربه مدرن با الهام از فضا، کهکشان و نورهای بنفش و آبی.
+          ساده، سریع و طراحی‌شده برای یک حضور متفاوت در وب.
+        </p>
+
+        <a class="contact" href="tel:09192832254">
+          <span>✦</span>
+          <span class="phone">09192832254</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cards">
+
+          <article class="card">
+            <div class="icon">◈</div>
+            <h2 id="card1Title">طراحی فضایی</h2>
+            <p id="card1Text">
+              ترکیب رنگ‌های بنفش، آبی و نورهای کیهانی برای ایجاد ظاهری مدرن.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">✦</div>
+            <h2 id="card2Title">سبک و سریع</h2>
+            <p id="card2Text">
+              بدون کتابخانه‌های سنگین؛ مناسب برای یک سایت تک‌صفحه‌ای سریع.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">◎</div>
+            <h2 id="card3Title">دو زبانه</h2>
+            <p id="card3Text">
+              تغییر سریع بین زبان فارسی و انگلیسی با یک دکمه.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer">
+    © 2026 Cosmic — All Rights Reserved
+  </footer>
+
+  <script>
+    let isEnglish = false;
+
+    const content = {
+      fa: {
+        dir: "rtl",
+        button: "EN",
+        badge: "دنیایی فراتر از مرزها",
+        title: "جهان کیهانی",
+        subtitle:
+          "یک تجربه مدرن با الهام از فضا، کهکشان و نورهای بنفش و آبی. ساده، سریع و طراحی‌شده برای یک حضور متفاوت در وب.",
+        card1Title: "طراحی فضایی",
+        card1Text:
+          "ترکیب رنگ‌های بنفش، آبی و نورهای کیهانی برای ایجاد ظاهری مدرن.",
+        card2Title: "سبک و سریع",
+        card2Text:
+          "بدون کتابخانه‌های سنگین؛ مناسب برای یک سایت تک‌صفحه‌ای سریع.",
+        card3Title: "دو زبانه",
+        card3Text:
+          "تغییر سریع بین زبان فارسی و انگلیسی با یک دکمه.",
+        footer: "© 2026 Cosmic — تمامی حقوق محفوظ است"
+      },
+
+      en: {
+        dir: "ltr",
+        button: "FA",
+        badge: "A world beyond boundaries",
+        title: "COSMIC WORLD",
+        subtitle:
+          "A modern experience inspired by space, galaxies and purple-blue cosmic lights. Simple, fast and designed for a unique web presence.",
+        card1Title: "Cosmic Design",
+        card1Text:
+          "A combination of purple, blue and cosmic lighting for a modern visual experience.",
+        card2Title: "Lightweight & Fast",
+        card2Text:
+          "No heavy libraries; optimized for a fast single-page website.",
+        card3Title: "Bilingual",
+        card3Text:
+          "Switch instantly between Persian and English with one button.",
+        footer: "© 2026 Cosmic — All Rights Reserved"
+      }
+    };
+
+    function toggleLanguage() {
+      isEnglish = !isEnglish;
+
+      const lang = isEnglish ? content.en : content.fa;
+
+      document.documentElement.lang = isEnglish ? "en" : "fa";
+      document.documentElement.dir = lang.dir;
+
+      document.getElementById("langButton").textContent = lang.button;
+      document.getElementById("badge").textContent = lang.badge;
+      document.getElementById("title").textContent = lang.title;
+      document.getElementById("subtitle").textContent = lang.subtitle;
+
+      document.getElementById("card1Title").textContent = lang.card1Title;
+      document.getElementById("card1Text").textContent = lang.card1Text;
+
+      document.getElementById("card2Title").textContent = lang.card2Title;
+      document.getElementById("card2Text").textContent = lang.card2Text;
+
+      document.getElementById("card3Title").textContent = lang.card3Title;
+      document.getElementById("card3Text").textContent = lang.card3Text;
+
+      document.getElementById("footer").textContent = lang.footer;
+    }
+  </script>
+
+</body>
+</html>
